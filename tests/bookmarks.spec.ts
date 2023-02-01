@@ -1,23 +1,19 @@
-import {test, expect} from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { setCookies } from '../utils/cookies';
 import { bookmarks } from '../fixtures/bookmark';
+import { hoverOnMainContent } from '../utils/common/common';
 
 test.describe('Bookmarks Test Suite', () => {
+  for (const bookmark of bookmarks) {
+    test(`${bookmark.name} is visible`, async ({ page }) => {
+      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      await setCookies(page, 'borlabs-cookie', 'true');
 
-    test.beforeEach(async({page}) => {
-        await page.goto('/', {waitUntil: 'networkidle'})
-        await setCookies(page, 'borlabs-cookie', 'true');
-        await page.reload({waitUntil: 'networkidle'})
-    })
+      await hoverOnMainContent(page);
+      const bookmarkButton = page.getByRole('button', { name: bookmark.name });
 
-    for (const bookmark of bookmarks) {
-        test(`${bookmark.name} is visible`, async ({page}) => {
-            const requestPromise = page.waitForRequest('https://in.hotjar.com/api/v2/client/sites/**')
-            const platformButton = page.getByRole('button', {name: `${bookmark.name}`});
-            await requestPromise;
-    
-            await expect(platformButton).toBeVisible();
-            await expect(platformButton).toHaveAttribute('href', `${bookmark.url}`)
-        });
-    }
-})
+      await expect(bookmarkButton).toBeVisible();
+      await expect(bookmarkButton).toHaveAttribute('href', `${bookmark.url}`);
+    });
+  }
+});
