@@ -1,6 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { hoverOnMainContent, pressEnter } from '../utils/common/common';
-import { setCookies } from '../utils/cookies';
+import {
+  hoverOnMainContent,
+  openURL,
+  pressEnter,
+  setCookies
+} from '../utils/common/common';
 import {
   clickOnSearchButton,
   fillSearchTextField,
@@ -9,7 +13,7 @@ import {
 
 test.describe('STEP 3 - Search Test Suite', () => {
   test('Wrong search text', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await openURL(page, '/');
     await setCookies(page, 'borlabs-cookie', 'true');
 
     await hoverOnMainContent(page);

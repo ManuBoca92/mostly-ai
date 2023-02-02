@@ -1,13 +1,16 @@
 import { test, expect } from '@playwright/test';
-import { setCookies } from '../utils/cookies';
 import { bookmarks } from '../fixtures/bookmark';
-import { hoverOnMainContent } from '../utils/common/common';
+import {
+  hoverOnMainContent,
+  openURL,
+  setCookies
+} from '../utils/common/common';
 import { getBookmarkButton } from '../utils/navigation/navigation';
 
 test.describe('STEP 1 - Bookmarks Test Suite', () => {
   for (const bookmark of bookmarks) {
     test(`${bookmark.name} is visible`, async ({ page }) => {
-      await page.goto('/', { waitUntil: 'domcontentloaded' });
+      await openURL(page, '/');
       await setCookies(page, 'borlabs-cookie', 'true');
 
       await hoverOnMainContent(page);

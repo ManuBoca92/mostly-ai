@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { setCookies } from '../utils/cookies';
 import { faker } from '@faker-js/faker';
 import {
   fillFirstname,
@@ -13,7 +12,11 @@ import {
   hoverOnSendMessageBtn,
   fillMessageDescription
 } from '../utils/contact-form/contactForm';
-import { hoverOnMainContent } from '../utils/common/common';
+import {
+  hoverOnMainContent,
+  openURL,
+  setCookies
+} from '../utils/common/common';
 import {
   clickOnContact,
   hoverOnBookmark
@@ -28,7 +31,7 @@ const paragraph = faker.lorem.paragraphs();
 
 test.describe('STEP 2 - Contact Form Test Suite', () => {
   test('Fills contact form but does not send it.', async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await openURL(page, '/');
     await setCookies(page, 'borlabs-cookie', 'true');
 
     await hoverOnMainContent(page);
@@ -48,5 +51,11 @@ test.describe('STEP 2 - Contact Form Test Suite', () => {
     await fillMessageDescription(page, paragraph);
     await checkMarketingOffers(page);
     await hoverOnSendMessageBtn(page);
+
+    /*
+    I have done everything in task 3,
+    this is where I will write my assertions,
+    but according to the task there was nothing to verify/assert.
+    */
   });
 });
