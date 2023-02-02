@@ -14,6 +14,10 @@ import {
   fillMessageDescription
 } from '../utils/contact-form/contactForm';
 import { hoverOnMainContent } from '../utils/common/common';
+import {
+  clickOnContact,
+  hoverOnBookmark
+} from '../utils/navigation/navigation';
 
 const firstName = faker.name.firstName();
 const lastName = faker.name.lastName();
@@ -28,14 +32,11 @@ test.describe('Contact Form Test Suite', () => {
     await setCookies(page, 'borlabs-cookie', 'true');
 
     await hoverOnMainContent(page);
-    const companyButton = page.getByRole('button', { name: 'Company' });
-    await companyButton.hover();
+    await hoverOnBookmark(page, 'Company');
+    await clickOnContact(page);
 
-    await page
-      .locator('a[class="ct-link"]')
-      .filter({ hasText: 'Contact' })
-      .click();
-    await page.waitForURL('**/contact/');
+    await expect(page).toHaveURL('/contact/');
+
     await hoverOnMainContent(page);
     await fillFirstname(page, firstName);
     await fillLastname(page, lastName);

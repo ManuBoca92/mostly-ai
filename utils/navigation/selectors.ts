@@ -1,1 +1,3 @@
-export enum NavigationComponent {}
+export enum NavigationComponent {
+  contactText = 'Contact'
+}
