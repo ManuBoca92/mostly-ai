@@ -7,7 +7,7 @@ import {
   getSearchResultText
 } from '../utils/search/search';
 
-test.describe('Search Test Suite', () => {
+test.describe('STEP 3 - Search Test Suite', () => {
   test('Wrong search text', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await setCookies(page, 'borlabs-cookie', 'true');

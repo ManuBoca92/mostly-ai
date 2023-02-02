@@ -26,7 +26,7 @@ const phoneNumber = faker.phone.number('###-####-###');
 const companyName = faker.company.name();
 const paragraph = faker.lorem.paragraphs();
 
-test.describe('Contact Form Test Suite', () => {
+test.describe('STEP 2 - Contact Form Test Suite', () => {
   test('Fills contact form but does not send it.', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await setCookies(page, 'borlabs-cookie', 'true');
