@@ -2,6 +2,7 @@ import { test, expect } from '@playwright/test';
 import { setCookies } from '../utils/cookies';
 import { bookmarks } from '../fixtures/bookmark';
 import { hoverOnMainContent } from '../utils/common/common';
+import { getBookmarkButton } from '../utils/navigation/navigation';
 
 test.describe('Bookmarks Test Suite', () => {
   for (const bookmark of bookmarks) {
@@ -10,10 +11,13 @@ test.describe('Bookmarks Test Suite', () => {
       await setCookies(page, 'borlabs-cookie', 'true');
 
       await hoverOnMainContent(page);
-      const bookmarkButton = page.getByRole('button', { name: bookmark.name });
+      const navigationBookmark = getBookmarkButton(page, bookmark.name);
 
-      await expect(bookmarkButton).toBeVisible();
-      await expect(bookmarkButton).toHaveAttribute('href', `${bookmark.url}`);
+      await expect(navigationBookmark).toBeVisible();
+      await expect(navigationBookmark).toHaveAttribute(
+        'href',
+        `${bookmark.url}`
+      );
     });
   }
 });

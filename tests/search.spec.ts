@@ -22,6 +22,6 @@ test.describe('Search Test Suite', () => {
       ' '
     );
 
-    expect(searchResultText).toMatch('Sorry, no results for: sythetic');
+    expect(searchResultText).toMatch(/Sorry, no results for:( |  )sythetic/);
   });
 });

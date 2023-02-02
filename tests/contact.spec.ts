@@ -23,7 +23,7 @@ const companyName = faker.company.name();
 const paragraph = faker.lorem.paragraphs();
 
 test.describe('Contact Form Test Suite', () => {
-  test('Fills Contact form but do not send form.', async ({ page }) => {
+  test('Fills contact form but does not send it.', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await setCookies(page, 'borlabs-cookie', 'true');
 
