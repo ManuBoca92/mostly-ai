@@ -12,7 +12,6 @@ To run this test, follow these steps, please make sure you have **node v18** ins
 
 - Clone repo
 - Go into directory and run `npm install` to install all dependencies.
-- Run `npx playwright install` to install latest playwright browsers.
 
 ### How to run tests
 
