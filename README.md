@@ -1,6 +1,6 @@
 # mostly-ai
 
-[Playwright](https://playwright.dev/) was chosen as the test framework of choice for this task. The test is run on [mostly.ai](https://mostly.ai/) site.
+[Playwright](https://playwright.dev/) was chosen as the test framework of choice for this task and is written in Typescript. The test is run on [mostly.ai](https://mostly.ai/) site.
 
 ### CI/CD
 
